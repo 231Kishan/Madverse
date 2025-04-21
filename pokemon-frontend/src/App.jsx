@@ -13,7 +13,7 @@ function App() {
 
   const handleSingleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch(`https://pokemonbackend-production-ef16.up.railway.app/api/pokemons/${name}`);
+    const res = await fetch(`https://madverse-2.onrender.com/api/pokemon/${name}`);
     const data = await res.json();
     if (res.ok) {
       setPokemon(data);
@@ -26,7 +26,7 @@ function App() {
   const handleMultipleSubmit = async (e) => {
     e.preventDefault();
     const names = namesInput.split(',').map((n) => n.trim());
-    const res = await fetch('https://pokemonbackend-production-ef16.up.railway.app/', {
+    const res = await fetch('https://madverse-2.onrender.com/api/pokemon/multiple', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ names }),
@@ -42,7 +42,7 @@ function App() {
 
   const handleTypeSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch(`https://pokemonbackend-production-ef16.up.railway.app/api/pokemons/type/${type.toLowerCase()}`);
+    const res = await fetch(`https://madverse-2.onrender.com/api/pokemon/type/${type.toLowerCase()}`);
     const data = await res.json();
     if (res.ok) {
       setTypeFilteredList(data);
@@ -61,10 +61,10 @@ function App() {
         justifyContent: 'center',
         alignItems: 'center',
         py: 4,
-        backgroundColor: '#f5f5f5',
+        backgroundColor: '#e3f2fd', // Light blue background color
         backgroundImage: `
-          radial-gradient(circle, #ff0000 1px, transparent 1px),
-          radial-gradient(circle, #ff0000 1px, transparent 1px)
+          radial-gradient(circle, rgba(255, 165, 0, 0.3) 1px, transparent 1px),
+          radial-gradient(circle, rgba(255, 165, 0, 0.3) 1px, transparent 1px)
         `,
         backgroundSize: '40px 40px',
         backgroundPosition: '0 0, 20px 20px',
@@ -76,9 +76,9 @@ function App() {
           left: 0,
           right: 0,
           bottom: 0,
-          background: 'linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%)',
+          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%)',
           zIndex: 0,
-        }
+        },
       }}
     >
       <Container
@@ -86,14 +86,14 @@ function App() {
         sx={{
           position: 'relative',
           zIndex: 1,
-          backgroundColor: 'rgba(255, 255, 255, 0.92)',
+          backgroundColor: 'rgba(255, 255, 255, 0.95)',
           borderRadius: 2,
           boxShadow: 3,
           p: 4,
           my: 4,
         }}
       >
-        <Typography variant="h4" gutterBottom sx={{ textAlign: 'center', mb: 4 }}>
+        <Typography variant="h4" gutterBottom sx={{ textAlign: 'center', mb: 4, color: '#1976d2' }}>
           Find Your Pokémon
         </Typography>
 
@@ -115,6 +115,8 @@ function App() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             sx={{ width: '100%', maxWidth: 400 }}
+            variant="outlined"
+            color="primary"
           />
           <Button
             variant="contained"
@@ -129,7 +131,7 @@ function App() {
         {pokemon && <PokemonRow pokemon={pokemon} />}
 
         {/* Multiple Pokémon Search */}
-        <Typography variant="h5" sx={{ mt: 6, mb: 3, textAlign: 'center' }}>
+        <Typography variant="h5" sx={{ mt: 6, mb: 3, textAlign: 'center', color: '#388e3c' }}>
           Find Multiple Pokémon
         </Typography>
 
@@ -150,6 +152,8 @@ function App() {
             value={namesInput}
             onChange={(e) => setNamesInput(e.target.value)}
             sx={{ width: '100%', maxWidth: 400 }}
+            variant="outlined"
+            color="secondary"
           />
           <Button
             variant="contained"
@@ -164,7 +168,7 @@ function App() {
         {pokemonList.length > 0 && <PokedexTable pokemons={pokemonList} />}
 
         {/* Filter by Type */}
-        <Typography variant="h5" sx={{ mt: 6, mb: 3, textAlign: 'center' }}>
+        <Typography variant="h5" sx={{ mt: 6, mb: 3, textAlign: 'center', color: '#d32f2f' }}>
           Filter by Pokémon Type
         </Typography>
 
@@ -185,6 +189,8 @@ function App() {
             value={type}
             onChange={(e) => setType(e.target.value)}
             sx={{ width: '100%', maxWidth: 400 }}
+            variant="outlined"
+            color="success"
           />
           <Button
             variant="contained"

@@ -6,13 +6,13 @@ function PokedexTable({ pokemons }) {
     <Grid container spacing={3} justifyContent="center" sx={{ mt: 2 }}>
       {pokemons.map((pokemon) => (
         <Grid item key={pokemon.id} xs={12} sm={6} md={4}>
-          <Card sx={{ height: '100%', boxShadow: 3 }}>
+          <Card sx={{ height: '100%', boxShadow: 3, backgroundColor: '#fafafa' }}>
             <CardContent sx={{ textAlign: 'center' }}>
-              <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+              <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#333' }}>
                 {pokemon.name.toUpperCase()}
               </Typography>
-              <Typography variant="body2">ID: {pokemon.id}</Typography>
-              <Typography variant="body2" sx={{ my: 1 }}>
+              <Typography variant="body2" color="text.secondary">ID: {pokemon.id}</Typography>
+              <Typography variant="body2" sx={{ my: 1 }} color="text.secondary">
                 Types: {pokemon.types.join(', ')}
               </Typography>
               <Box sx={{ display: 'flex', justifyContent: 'center' }}>
